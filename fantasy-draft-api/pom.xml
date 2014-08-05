@@ -7,9 +7,12 @@
 	
 	<properties>
 		<spring.version>4.0.6.RELEASE</spring.version>
+		<spring.security.version>3.2.4.RELEASE</spring.security.version>
 	</properties>
 	
 	<dependencies>
+	
+		<!-- Spring -->
 	
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -28,6 +31,26 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<!-- Spring Security -->
+		
+		<dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		
+		<!-- Jackson -->
 		
 		<dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -48,6 +71,15 @@
 			<artifactId>fantasy-draft-integration</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<!-- Provided Resources -->
+		
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
  
 	
 	</dependencies>

@@ -10,6 +10,7 @@ import net.blackcat.fantasy.draft.player.types.Position;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,7 @@ public class PlayerController {
 	 * 
 	 * @return JSON containing all players.
 	 */
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody List<Player> getPlayers() {
 		return playerIntegrationController.getPlayers();
