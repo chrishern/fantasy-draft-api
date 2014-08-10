@@ -49,6 +49,7 @@ public class PlayerController {
 	 * 
 	 * @return JSON containing all players of the desired position.
 	 */
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/{position}", method = RequestMethod.GET)
 	public @ResponseBody List<Player> getPlayers(@PathVariable String position) {
 		return playerIntegrationController.getPlayers(Position.fromRestApiValue(position));
