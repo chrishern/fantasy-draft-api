@@ -35,7 +35,7 @@ public class DraftRoundController {
 	 * @throws FantasyDraftIntegrationException
 	 */
 	@PreAuthorize("isAuthenticated()")
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/bids", method = RequestMethod.POST)
 	public void makeBids(@RequestBody final TeamBids teamBids) throws FantasyDraftIntegrationException {
 		draftRoundIntegrationController.makeBids(teamBids);
 	}
