@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * REST controller class which provides draft round related operations.
@@ -38,5 +39,12 @@ public class DraftRoundController {
 	@RequestMapping(value = "/bids", method = RequestMethod.POST)
 	public void makeBids(@RequestBody final TeamBids teamBids) throws FantasyDraftIntegrationException {
 		draftRoundIntegrationController.makeBids(teamBids);
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/round/start", method = RequestMethod.PUT)
+	public void startDraftRound(@RequestParam(value = "leagueId", required = true) final int leagueId, 
+			@RequestParam(value = "phaseNumber", required = true) final int phaseNumber) throws FantasyDraftIntegrationException {
+		draftRoundIntegrationController.startAuctionPhase(leagueId, phaseNumber);
 	}
 }
