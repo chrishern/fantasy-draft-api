@@ -40,8 +40,14 @@ public class DraftRoundController {
 	public void makeBids(@RequestBody final TeamBids teamBids) throws FantasyDraftIntegrationException {
 		draftRoundIntegrationController.makeBids(teamBids);
 	}
-	
-	@PreAuthorize("isAuthenticated()")
+
+	/**
+	 * Start a draft round for a given team.
+	 * 
+	 * @param leagueId ID of the league to start the draft round for.
+	 * @param phaseNumber The phase of the round to start.
+	 * @throws FantasyDraftIntegrationException
+	 */
 	@RequestMapping(value = "/round/start", method = RequestMethod.PUT)
 	public void startDraftRound(@RequestParam(value = "leagueId", required = true) final int leagueId, 
 			@RequestParam(value = "phaseNumber", required = true) final int phaseNumber) throws FantasyDraftIntegrationException {
