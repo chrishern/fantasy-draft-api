@@ -43,6 +43,7 @@
 	    	<user-service>
 	    		<user name="user" password="password" authorities="ROLE_USER" />
 	    		<user name="chrishern@hotmail.com" password="password" authorities="ROLE_USER" />
+	    		<user name="paulclark1981@ntlworld.com" password="password" authorities="ROLE_USER" />
 	    	</user-service>
 	    </authentication-provider>
   </authentication-manager>
