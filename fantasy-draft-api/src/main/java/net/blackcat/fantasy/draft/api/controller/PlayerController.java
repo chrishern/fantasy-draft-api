@@ -6,6 +6,7 @@ package net.blackcat.fantasy.draft.api.controller;
 import java.util.List;
 
 import net.blackcat.fantasy.draft.player.Player;
+import net.blackcat.fantasy.draft.player.types.PlayerSelectionStatus;
 import net.blackcat.fantasy.draft.player.types.Position;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,18 @@ public class PlayerController {
 	@RequestMapping(value = "/{position}", method = RequestMethod.GET)
 	public @ResponseBody List<Player> getPlayers(@PathVariable String position) {
 		return playerIntegrationController.getPlayers(Position.fromRestApiValue(position));
+	}
+	
+	/**
+	 * Get all available {@link Player} objects within the game of a given position.
+	 * 
+	 * @param position The position of the players wanted.
+	 * 
+	 * @return JSON containing all available players of the desired position.
+	 */
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/available/{position}", method = RequestMethod.GET)
+	public @ResponseBody List<Player> getAvailablePlayers(@PathVariable String position) {
+		return playerIntegrationController.getPlayers(Position.fromRestApiValue(position), PlayerSelectionStatus.NOT_SELECTED);
 	}
 }
