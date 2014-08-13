@@ -3,6 +3,8 @@
  */
 package net.blackcat.fantasy.draft.api.controller;
 
+import java.util.List;
+
 import net.blackcat.fantasy.draft.auction.AuctionRoundResults;
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
 import net.blackcat.fantasy.draft.round.TeamBids;
@@ -60,9 +62,27 @@ public class DraftRoundController {
 			@RequestParam(value = "phaseNumber", required = true) final int phaseNumber) throws FantasyDraftIntegrationException {
 		draftRoundIntegrationController.startAuctionPhase(leagueId, phaseNumber);
 	}
-	
+
+	/**
+	 * End a draft round for a league.
+	 * 
+	 * @param leagueId League to end the draft round for.
+	 * @return Results of the draft round.
+	 * @throws FantasyDraftIntegrationException
+	 */
 	@RequestMapping(value = "/round/end/{leagueId}", method = RequestMethod.POST)
 	public @ResponseBody AuctionRoundResults endDraftRound(@PathVariable int leagueId) throws FantasyDraftIntegrationException {
 		return draftRoundIntegrationController.closeAuctionPhase(leagueId);
+	}
+	
+	/**
+	 * Get the draft round results for a league.
+	 * 
+	 * @param leagueId League to get the draft round results for.
+	 * @return Results of the draft rounds.
+	 */
+	@RequestMapping(value = "/round/results/{leagueId}", method = RequestMethod.GET)
+	public @ResponseBody List<AuctionRoundResults> getDraftRoundResults(@PathVariable int leagueId){
+		return draftRoundIntegrationController.getAuctionRoundResults(leagueId);
 	}
 }
