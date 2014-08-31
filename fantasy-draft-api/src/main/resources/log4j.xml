@@ -20,7 +20,7 @@
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="error" />
+		<level value="info" />
 	</logger>
 	
 	<logger name="org.springframework.context">
