@@ -9,6 +9,7 @@ import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationE
 import net.blackcat.fantasy.draft.integration.upgrade.PopulateFirstWeekScores;
 import net.blackcat.fantasy.draft.player.Player;
 import net.blackcat.fantasy.draft.team.Team;
+import net.blackcat.fantasy.draft.team.TeamSummary;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -60,5 +61,17 @@ public class TeamController {
 	@ResponseStatus(value = HttpStatus.OK) 
 	public void upgrade() throws FantasyDraftIntegrationException {
 		upgrade.populateAllTeams();
+	}
+	
+	/**
+	 * Get the summary for a given team.
+	 * 
+	 * @param teamId ID of the team to get the summay for.
+	 * @return Object which can be serialised as JSON representing the summary of the team.
+	 * @throws FantasyDraftIntegrationException If any problems in obtaining the team summary occurred.
+	 */
+	@RequestMapping(value = "/summary/{teamId}", method = RequestMethod.GET)
+	public @ResponseBody TeamSummary getTeamSummary(@PathVariable int teamId) throws FantasyDraftIntegrationException {
+		return teamIntegrationController.getTeamSummary(teamId);
 	}
 }
