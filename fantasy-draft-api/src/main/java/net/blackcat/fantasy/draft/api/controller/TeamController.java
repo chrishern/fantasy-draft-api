@@ -14,6 +14,7 @@ import net.blackcat.fantasy.draft.team.TeamSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,6 +71,7 @@ public class TeamController {
 	 * @return Object which can be serialised as JSON representing the summary of the team.
 	 * @throws FantasyDraftIntegrationException If any problems in obtaining the team summary occurred.
 	 */
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/summary/{teamId}", method = RequestMethod.GET)
 	public @ResponseBody TeamSummary getTeamSummary(@PathVariable int teamId) throws FantasyDraftIntegrationException {
 		return teamIntegrationController.getTeamSummary(teamId);

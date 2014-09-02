@@ -10,6 +10,7 @@ import net.blackcat.fantasy.draft.manager.Manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -74,6 +75,7 @@ public class UserController {
 	 * @return JSON serialisable object containing logged in details.
 	 * @throws FantasyDraftIntegrationException If any error occurs when obtaining the logged in user details.
 	 */
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/authenticate/retrieve/userdetails", method = RequestMethod.GET)
 	public @ResponseBody LoggedInUser getLoggedInUserDetails() throws FantasyDraftIntegrationException {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
