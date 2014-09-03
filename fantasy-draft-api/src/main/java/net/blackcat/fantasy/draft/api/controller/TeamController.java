@@ -67,7 +67,7 @@ public class TeamController {
 	/**
 	 * Get the summary for a given team.
 	 * 
-	 * @param teamId ID of the team to get the summay for.
+	 * @param teamId ID of the team to get the summary for.
 	 * @return Object which can be serialised as JSON representing the summary of the team.
 	 * @throws FantasyDraftIntegrationException If any problems in obtaining the team summary occurred.
 	 */
@@ -75,5 +75,18 @@ public class TeamController {
 	@RequestMapping(value = "/summary/{teamId}", method = RequestMethod.GET)
 	public @ResponseBody TeamSummary getTeamSummary(@PathVariable int teamId) throws FantasyDraftIntegrationException {
 		return teamIntegrationController.getTeamSummary(teamId);
+	}
+	
+	/**
+	 * Get the team summaries for a given league.
+	 * 
+	 * @param leagueId ID of the league to get the team summaries for.
+	 * @return Object which can be serialised as JSON representing the team summaries.
+	 * @throws FantasyDraftIntegrationException If any problems in obtaining the team summaries occurred.
+	 */
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/summaries/{leagueId}", method = RequestMethod.GET)
+	public @ResponseBody List<TeamSummary> getTeamSummaries(@PathVariable int leagueId) throws FantasyDraftIntegrationException {
+		return teamIntegrationController.getTeamSummaries(leagueId);
 	}
 }
