@@ -5,6 +5,7 @@ package net.blackcat.fantasy.draft.api.controller;
 
 import java.util.List;
 
+import net.blackcat.fantasy.draft.fpl.integration.controller.InitialPlayerValueController;
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
 import net.blackcat.fantasy.draft.integration.upgrade.PopulateFirstWeekScores;
 import net.blackcat.fantasy.draft.player.Player;
@@ -39,6 +40,10 @@ public class TeamController {
 	@Autowired
 	@Qualifier(value = "populateFirstWeekScores")
 	private PopulateFirstWeekScores upgrade;
+	
+	@Autowired
+	@Qualifier(value = "initialPlayerValueController")
+	private InitialPlayerValueController initialPlayerValueController;
 	
 	/**
 	 * Get all {@link Player} objects within the game of a given position.
@@ -88,5 +93,14 @@ public class TeamController {
 	@RequestMapping(value = "/summaries/{leagueId}", method = RequestMethod.GET)
 	public @ResponseBody List<TeamSummary> getTeamSummaries(@PathVariable int leagueId) throws FantasyDraftIntegrationException {
 		return teamIntegrationController.getTeamSummaries(leagueId);
+	}
+	
+	/**
+	 * Function used to populate the initial (first week) FPL price of the selected players in all teams.
+	 */
+	@RequestMapping(value = "/populateInitialPurchasePrice", method = RequestMethod.PUT)
+	@ResponseStatus(value = HttpStatus.OK) 
+	public void populateInitialPurchasePrice() throws FantasyDraftIntegrationException {
+		initialPlayerValueController.updatePlayersWithInitialPurchasePrice();
 	}
 }
