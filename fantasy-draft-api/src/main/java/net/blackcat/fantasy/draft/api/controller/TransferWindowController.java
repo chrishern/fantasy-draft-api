@@ -55,4 +55,18 @@ public class TransferWindowController {
 	public void addTransfer(@RequestBody final Transfer transfer) throws FantasyDraftIntegrationException {
 		transferWindowIntegrationController.addTransfer(transfer);
 	}
+	
+	/**
+	 * Sell a given player from a given team to the pot.
+	 * 
+	 * @param teamId The ID of the team selling the player to the pot.
+	 * @param playerId The ID of the player being sold to the pot.
+	 * @throws FantasyDraftIntegrationException
+	 */
+	@RequestMapping(value = "/potSale", method = RequestMethod.PUT)
+	@ResponseStatus(value = HttpStatus.OK) 
+	public void sellPlayerToPot(@RequestParam(value = "teamId", required = true) final int teamId, 
+			@RequestParam(value = "playerId", required = true) final int playerId) throws FantasyDraftIntegrationException {
+		transferWindowIntegrationController.sellPlayerToPot(teamId, playerId);
+	}
 }
