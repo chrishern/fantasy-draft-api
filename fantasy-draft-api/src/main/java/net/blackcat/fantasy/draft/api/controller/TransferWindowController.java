@@ -4,11 +4,13 @@
 package net.blackcat.fantasy.draft.api.controller;
 
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
+import net.blackcat.fantasy.draft.transfer.Transfer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,5 +42,17 @@ public class TransferWindowController {
 	public void startDraftRound(@RequestParam(value = "leagueId", required = true) final int leagueId, 
 			@RequestParam(value = "windowNumber", required = true) final int windowNumber) throws FantasyDraftIntegrationException {
 		transferWindowIntegrationController.startTransferWindow(leagueId, windowNumber);
+	}
+	
+	/**
+	 * Add a given transfer to a window.
+	 * 
+	 * @param transfer Transfer to add.
+	 * @throws FantasyDraftIntegrationException
+	 */
+	@RequestMapping(value = "/transfer", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void addTransfer(@RequestBody final Transfer transfer) throws FantasyDraftIntegrationException {
+		transferWindowIntegrationController.addTransfer(transfer);
 	}
 }
