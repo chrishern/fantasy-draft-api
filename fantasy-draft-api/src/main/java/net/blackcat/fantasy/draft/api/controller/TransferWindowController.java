@@ -5,7 +5,9 @@ package net.blackcat.fantasy.draft.api.controller;
 
 import java.util.List;
 
+import net.blackcat.fantasy.draft.auction.AuctionRoundResults;
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
+import net.blackcat.fantasy.draft.round.TeamBids;
 import net.blackcat.fantasy.draft.transfer.LeagueTransferWindowSummary;
 import net.blackcat.fantasy.draft.transfer.Transfer;
 import net.blackcat.fantasy.draft.transfer.TransferSummary;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -109,5 +112,29 @@ public class TransferWindowController {
 	@RequestMapping(value = "/summary", method = RequestMethod.GET)
 	public @ResponseBody LeagueTransferWindowSummary getLeagueTransferWindowSummary(@RequestParam(value = "leagueId", required = true) int leagueId) throws FantasyDraftIntegrationException {
 		return transferWindowIntegrationController.getLeagueTransferWindowSummary(leagueId);
+	}
+	
+	/**
+	 * Submit a selection of bids for a team in an auction.
+	 * 
+	 * @param teamBids Bids to place. 
+	 * @throws FantasyDraftIntegrationException
+	 */
+	@RequestMapping(value = "/bids", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK) 
+	public void makeBids(@RequestBody final TeamBids teamBids) throws FantasyDraftIntegrationException {
+		transferWindowIntegrationController.makeBids(teamBids);
+	}
+	
+	/**
+	 * End a draft round for a league.
+	 * 
+	 * @param leagueId League to end the draft round for.
+	 * @return Results of the draft round.
+	 * @throws FantasyDraftIntegrationException
+	 */
+	@RequestMapping(value = "/auction/end/{leagueId}", method = RequestMethod.POST)
+	public @ResponseBody AuctionRoundResults endDraftRound(@PathVariable int leagueId) throws FantasyDraftIntegrationException {
+		return transferWindowIntegrationController.closeTransferWindow(leagueId);
 	}
 }
