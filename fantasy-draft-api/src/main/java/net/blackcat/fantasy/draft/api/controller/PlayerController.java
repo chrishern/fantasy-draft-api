@@ -5,6 +5,7 @@ package net.blackcat.fantasy.draft.api.controller;
 
 import java.util.List;
 
+import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
 import net.blackcat.fantasy.draft.player.Player;
 import net.blackcat.fantasy.draft.player.types.PlayerSelectionStatus;
 import net.blackcat.fantasy.draft.player.types.Position;
@@ -67,5 +68,19 @@ public class PlayerController {
 	@RequestMapping(value = "/available/{position}", method = RequestMethod.GET)
 	public @ResponseBody List<Player> getAvailablePlayers(@PathVariable String position) {
 		return playerIntegrationController.getPlayers(Position.fromRestApiValue(position), PlayerSelectionStatus.NOT_SELECTED);
+	}
+	
+	/**
+	 * Get all available {@link Player} objects within the game of a given position.
+	 * 
+	 * @param position The position of the players wanted.
+	 * 
+	 * @return JSON containing all available players of the desired position.
+	 * @throws FantasyDraftIntegrationException 
+	 */
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/available/{position}/{teamId}", method = RequestMethod.GET)
+	public @ResponseBody List<Player> getAvailablePlayers(@PathVariable String position, @PathVariable int teamId) throws FantasyDraftIntegrationException {
+		return playerIntegrationController.getPlayers(Position.fromRestApiValue(position), PlayerSelectionStatus.NOT_SELECTED, teamId);
 	}
 }
