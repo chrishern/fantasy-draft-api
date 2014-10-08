@@ -85,4 +85,17 @@ public class TransferWindowController {
 	public @ResponseBody List<TransferSummary> getTransfersForTeamInOpenWindow(@RequestParam(value = "teamId", required = true) final int teamId) throws FantasyDraftIntegrationException {
 		return transferWindowIntegrationController.getTransfersForTeamInOpenWindow(teamId);
 	}
+	
+	/**
+	 * Move the transfer window status onto auction phase.  This involves moving all players in and out of the
+	 * respective teams based on all transfers in the window.
+	 * 
+	 * @param leagueId ID of the league to move the transfer window phase on for.
+	 * @throws FantasyDraftIntegrationException
+	 */
+	@RequestMapping(value = "/startAuction", method = RequestMethod.PUT)
+	@ResponseStatus(value = HttpStatus.OK) 
+	public void moveTransferWindowOntoAuction(@RequestParam(value = "leagueId", required = true) final int leagueId) throws FantasyDraftIntegrationException {
+		transferWindowIntegrationController.moveTransferWindowOntoAuction(leagueId);
+	}
 }
