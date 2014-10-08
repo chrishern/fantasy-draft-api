@@ -6,6 +6,7 @@ package net.blackcat.fantasy.draft.api.controller;
 import java.util.List;
 
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
+import net.blackcat.fantasy.draft.transfer.LeagueTransferWindowSummary;
 import net.blackcat.fantasy.draft.transfer.Transfer;
 import net.blackcat.fantasy.draft.transfer.TransferSummary;
 
@@ -97,5 +98,16 @@ public class TransferWindowController {
 	@ResponseStatus(value = HttpStatus.OK) 
 	public void moveTransferWindowOntoAuction(@RequestParam(value = "leagueId", required = true) final int leagueId) throws FantasyDraftIntegrationException {
 		transferWindowIntegrationController.moveTransferWindowOntoAuction(leagueId);
+	}
+	
+	/**
+	 * Get the transfer window summary for a given league.
+	 * 
+	 * @param leagueId ID of the league to get the transfer window summary for.
+	 * @return Transfer window summary for the league,
+	 */
+	@RequestMapping(value = "/summary", method = RequestMethod.GET)
+	public @ResponseBody LeagueTransferWindowSummary getLeagueTransferWindowSummary(@RequestParam(value = "leagueId", required = true) int leagueId) throws FantasyDraftIntegrationException {
+		return transferWindowIntegrationController.getLeagueTransferWindowSummary(leagueId);
 	}
 }
