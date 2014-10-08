@@ -3,8 +3,11 @@
  */
 package net.blackcat.fantasy.draft.api.controller;
 
+import java.util.List;
+
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
 import net.blackcat.fantasy.draft.transfer.Transfer;
+import net.blackcat.fantasy.draft.transfer.TransferSummary;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -68,5 +72,17 @@ public class TransferWindowController {
 	public void sellPlayerToPot(@RequestParam(value = "teamId", required = true) final int teamId, 
 			@RequestParam(value = "playerId", required = true) final int playerId) throws FantasyDraftIntegrationException {
 		transferWindowIntegrationController.sellPlayerToPot(teamId, playerId);
+	}
+	
+	/**
+	 * Get the transfers for a given team in the open transfer window.
+	 * 
+	 * @param teamId ID of the team we want the transfers for.
+	 * @return Transfers for the given team.
+	 * @throws FantasyDraftIntegrationException
+	 */
+	@RequestMapping(value = "/transfers", method = RequestMethod.GET)
+	public @ResponseBody List<TransferSummary> getTransfersForTeamInOpenWindow(@RequestParam(value = "teamId", required = true) final int teamId) throws FantasyDraftIntegrationException {
+		return transferWindowIntegrationController.getTransfersForTeamInOpenWindow(teamId);
 	}
 }
