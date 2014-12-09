@@ -110,8 +110,9 @@ public class TransferWindowController {
 	 * @return Transfer window summary for the league,
 	 */
 	@RequestMapping(value = "/summary", method = RequestMethod.GET)
-	public @ResponseBody LeagueTransferWindowSummary getLeagueTransferWindowSummary(@RequestParam(value = "leagueId", required = true) int leagueId) throws FantasyDraftIntegrationException {
-		return transferWindowIntegrationController.getLeagueTransferWindowSummary(leagueId);
+	public @ResponseBody LeagueTransferWindowSummary getLeagueTransferWindowSummary(@RequestParam(value = "leagueId", required = true) int leagueId,
+			@RequestParam(value = "overallSequenceNumber", required = true) int overallSequenceNumber) throws FantasyDraftIntegrationException {
+		return transferWindowIntegrationController.getLeagueTransferWindowSummary(leagueId, overallSequenceNumber);
 	}
 	
 	/**
