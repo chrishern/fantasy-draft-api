@@ -11,6 +11,7 @@ import net.blackcat.fantasy.draft.integration.model.types.player.PlayerSelection
 import net.blackcat.fantasy.draft.integration.model.types.player.Position;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +36,7 @@ public class PlayerRestController {
 
     // @formatter:off
 
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping("")
     public @ResponseBody List<PlayerDto> getPlayers(@RequestParam(value="position") final Position position, 
             @RequestParam(value="selectionStatus") final PlayerSelectionStatus selectionStatus) {
