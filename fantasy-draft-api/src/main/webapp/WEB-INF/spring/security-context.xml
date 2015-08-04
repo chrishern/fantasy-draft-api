@@ -51,6 +51,9 @@
 	    		<user name="andy_hall1982@yahoo.co.uk" password="thehog" authorities="ROLE_USER" />
 	    		<user name="beastme1000@hotmail.com" password="pauljackson" authorities="ROLE_USER" />
 	    		<user name="jdgarrity@btinternet.com" password="johndeane" authorities="ROLE_USER" />
+	    		<user name="denispunter@hotmail.com" password="denis" authorities="ROLE_USER" />
+	    		<user name="stuartspence@hotmail.com" password="spoon" authorities="ROLE_USER" />
+	    		<user name="kevfawcett@hotmail.co.uk" password="fwas" authorities="ROLE_USER" />
 	    	</user-service>
 	    </authentication-provider>
   </authentication-manager>
