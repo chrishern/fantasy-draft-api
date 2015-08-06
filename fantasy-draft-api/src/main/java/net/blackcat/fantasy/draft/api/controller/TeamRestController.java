@@ -3,6 +3,8 @@
  */
 package net.blackcat.fantasy.draft.api.controller;
 
+import java.util.List;
+
 import net.blackcat.fantasy.draft.api.security.SecurityUtils;
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
 import net.blackcat.fantasy.draft.integration.facade.TeamFacade;
@@ -33,16 +35,25 @@ public class TeamRestController {
 
     // @formatter:off
 
-  @PreAuthorize("isAuthenticated()")
-  @RequestMapping("")
-  public @ResponseBody SquadDto getSquadDetails() throws FantasyDraftIntegrationException {
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping("")
+    public @ResponseBody SquadDto getSquadDetails() throws FantasyDraftIntegrationException {
 
-      // @formatter:on
+    	final String loggedInUser = SecurityUtils.getLoggedInUser();
 
-        final String loggedInUser = SecurityUtils.getLoggedInUser();
+    	return teamFacade.getSquadDetails(loggedInUser);
 
-        return teamFacade.getSquadDetails(loggedInUser);
+    }
+    
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping("league")
+    public @ResponseBody List<SquadDto> getSquadDetailsForLeague() throws FantasyDraftIntegrationException {
+
+    	final String loggedInUser = SecurityUtils.getLoggedInUser();
+
+    	return teamFacade.getSquadDetailsForLeague(loggedInUser);
 
     }
 
+    // @formatter:on
 }
