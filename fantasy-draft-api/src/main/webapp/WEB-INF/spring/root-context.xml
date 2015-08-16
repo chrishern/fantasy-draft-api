@@ -11,6 +11,7 @@
     <import resource="classpath:beanContext.xml" />
 	<import resource="classpath:mysqlDatasourceContext.xml" />
 	<import resource="classpath:repositoryContext.xml" />
+	<import resource="classpath:fplIntegrationContext.xml" />
 	
 	<mvc:annotation-driven />
  

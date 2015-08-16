@@ -73,6 +73,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>net.blackcat.fantasy.draft</groupId>
+			<artifactId>fantasy-draft-fpl-integration</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<!-- Provided Resources -->
 		
         <dependency>
