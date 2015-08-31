@@ -3,10 +3,13 @@
  */
 package net.blackcat.fantasy.draft.api.controller;
 
+import java.util.List;
+
 import net.blackcat.fantasy.draft.api.security.SecurityUtils;
 import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationException;
 import net.blackcat.fantasy.draft.integration.facade.LeagueFacade;
 import net.blackcat.fantasy.draft.integration.facade.dto.LeagueTableDto;
+import net.blackcat.fantasy.draft.integration.facade.dto.TeamSummaryDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,6 +43,16 @@ public class LeagueRestController {
     	final String loggedInUser = SecurityUtils.getLoggedInUser();
 
     	return leagueFacade.getLeagueTable(loggedInUser);
+
+    }
+    
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping("/team/summaries")
+    public @ResponseBody List<TeamSummaryDto> getTeamSummaries() throws FantasyDraftIntegrationException {
+
+    	final String loggedInUser = SecurityUtils.getLoggedInUser();
+
+    	return leagueFacade.getTeamSummaries(loggedInUser);
 
     }
     
