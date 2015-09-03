@@ -8,6 +8,7 @@ import net.blackcat.fantasy.draft.integration.exception.FantasyDraftIntegrationE
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,7 @@ public class GameweekRestController {
 		this.playerDataFacade = playerDataFacade;
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/scores", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK) 
     public void calculateCurrentGameweekScores() throws FantasyDraftIntegrationException {

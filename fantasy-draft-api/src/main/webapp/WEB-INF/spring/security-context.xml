@@ -42,8 +42,8 @@
 	    <authentication-provider>
 	    	<user-service>
 	    		<user name="user" password="password" authorities="ROLE_USER" />
-	    		<user name="chrishern@hotmail.com" password="password" authorities="ROLE_USER" />
-	    		<user name="paulclark1981@ntlworld.com" password="therat" authorities="ROLE_USER" />
+	    		<user name="chrishern@hotmail.com" password="password" authorities="ROLE_USER, ADMIN" />
+	    		<user name="paulclark1981@ntlworld.com" password="therat" authorities="ROLE_USER, ADMIN" />
 	    		<user name="day111@hotmail.co.uk" password="chrissy" authorities="ROLE_USER" />
 	    		<user name="davidjackson_30@hotmail.com" password="jags" authorities="ROLE_USER" />
 	    		<user name="davidpearce23@live.co.uk" password="safc1973" authorities="ROLE_USER" />
