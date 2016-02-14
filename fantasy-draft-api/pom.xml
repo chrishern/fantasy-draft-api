@@ -3,12 +3,31 @@
 	<groupId>net.blackcat.fantasy.draft</groupId>
 	<artifactId>fantasy-draft-api</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	
 	<properties>
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<spring.security.version>3.2.4.RELEASE</spring.security.version>
 	</properties>
+	
+	<scm>
+		<developerConnection>scm:git:git@github.com:chrishern/fantasy-draft-api.git</developerConnection>
+		<connection>scm:git:git@github.com:chrishern/fantasy-draft-api.git</connection>
+		<url>git@github.com:chrishern/fantasy-draft-api.git</url>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Releases</name>
+			<url>http://192.168.0.13:8081/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshots</name>
+			<url>http://192.168.0.13:8081/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 	
 	<dependencies>
 	
@@ -70,13 +89,13 @@
 		<dependency>
 			<groupId>net.blackcat.fantasy.draft</groupId>
 			<artifactId>fantasy-draft-integration</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>net.blackcat.fantasy.draft</groupId>
 			<artifactId>fantasy-draft-fpl-integration</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 		
 		<!-- Provided Resources -->
@@ -119,6 +138,18 @@
                     </connectors>
                 </configuration>
             </plugin>
+            
+            <plugin>
+				<groupId>external.atlassian.jgitflow</groupId>
+				<artifactId>jgitflow-maven-plugin</artifactId>
+				<version>1.0-m5.1</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<pushReleases>true</pushReleases>
+					<noDeploy>true</noDeploy>
+					<pullMaster>true</pullMaster>
+				</configuration>
+			</plugin>
         </plugins>
     </build>
 </project>
