@@ -3,7 +3,7 @@
 	<groupId>net.blackcat.fantasy.draft</groupId>
 	<artifactId>fantasy-draft-api</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	
 	<properties>
 		<spring.version>4.1.6.RELEASE</spring.version>
@@ -89,7 +89,7 @@
 		<dependency>
 			<groupId>net.blackcat.fantasy.draft</groupId>
 			<artifactId>fantasy-draft-integration</artifactId>
-			<version>0.0.2</version>
+			<version>0.0.3</version>
 		</dependency>
 		
 		<dependency>
