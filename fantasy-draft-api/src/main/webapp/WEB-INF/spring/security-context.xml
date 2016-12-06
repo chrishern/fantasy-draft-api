@@ -54,6 +54,9 @@
 	    		<user name="denispunter@hotmail.com" password="denis" authorities="ROLE_USER" />
 	    		<user name="stuartspence@hotmail.com" password="spoon" authorities="ROLE_USER" />
 	    		<user name="kevfawcett@hotmail.co.uk" password="fwas" authorities="ROLE_USER" />
+	    		<user name="cdclarkuk@gmail.com" password="cclark" authorities="ROLE_USER" />
+	    		<user name="graeme.p.sherlock@aviva.co.uk" password="siralex" authorities="ROLE_USER" />
+	    		<user name="iandavidsonuk@yahoo.co.uk" password="terrycried" authorities="ROLE_USER" />
 	    	</user-service>
 	    </authentication-provider>
   </authentication-manager>

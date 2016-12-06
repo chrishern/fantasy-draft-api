@@ -47,7 +47,7 @@ public class GameweekRestController {
     @ResponseStatus(value = HttpStatus.OK) 
     public void calculateGameweekScores(@PathVariable final int gameweek) throws FantasyDraftIntegrationException {
     	
-    	playerDataFacade.calculateGameweekScores(gameweek);
+//    	playerDataFacade.calculateGameweekScores(gameweek);
     }
 	
 	// @formatter:on
